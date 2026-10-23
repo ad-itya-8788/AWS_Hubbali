@@ -111,7 +111,7 @@ function App() {
                 {disclosureFiles.map(([label, file]) => (
                   <a
                     key={file}
-                    href={`/assets/uploadedfiles/${file}`}
+                    href={`/pdfs/${file}`}
                     target="_blank"
                     rel="noreferrer"
                     onClick={closeMenu}
@@ -280,10 +280,10 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer">
+    <footer className="site-footer">
         <div className="container footer-inner">
 
-          <p>© {new Date().getFullYear()} Design with Nikhil Kholam 🥵 by aaryansworldschool.</p>
+          <p>© {new Date().getFullYear()} Design with Nikhil Kholam ❤️ by aaryansworldschool.</p>
           <a className="footer-top" href="#home" aria-label="Back to top">↑</a>
         </div>
       </footer>
