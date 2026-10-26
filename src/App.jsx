@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const disclosureFiles = [
@@ -20,6 +20,14 @@ const disclosureFiles = [
   ["SCHOOL MANAGING COMMITTEE", "SCHOOL-MANAGING-COMMITTEE-1.pdf"],
   ["Self Certification", "self-certification.pdf"],
   ["Mandatory Disclosure", "mandatoryDisclosure.pdf"],
+];
+
+const navLinks = [
+  ["home", "Home"],
+  ["aboutus", "About Us"],
+  ["ourFeatures", "Our Features"],
+  ["meetOurTeam", "Gallery"],
+  ["contact", "Contact us"],
 ];
 
 const aboutTabs = [
@@ -64,8 +72,27 @@ function App() {
   const [disclosureOpen, setDisclosureOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("vision");
   const [lightboxImage, setLightboxImage] = useState(null);
+  const [activeSection, setActiveSection] = useState("home");
+  const [showTop, setShowTop] = useState(false);
 
   const activeAbout = aboutTabs.find((tab) => tab.id === activeTab) || aboutTabs[0];
+
+  // Highlight the current section in the nav (like the live site) + show back-to-top button
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY + 150;
+      let current = "home";
+      navLinks.forEach(([id]) => {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) current = id;
+      });
+      setActiveSection(current);
+      setShowTop(window.scrollY > 300);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -93,11 +120,16 @@ function App() {
           </button>
 
           <nav className={`main-nav ${menuOpen ? "is-open" : ""}`} aria-label="Main navigation">
-            <a href="#home" onClick={closeMenu}>Home</a>
-            <a href="#aboutus" onClick={closeMenu}>About Us</a>
-            <a href="#ourFeatures" onClick={closeMenu}>Our Features</a>
-            <a href="#meetOurTeam" onClick={closeMenu}>Gallery</a>
-            <a href="#contact" onClick={closeMenu}>Contact us</a>
+            {navLinks.map(([id, label]) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className={activeSection === id ? "active" : ""}
+                onClick={closeMenu}
+              >
+                {label}
+              </a>
+            ))}
             <div className="disclosure-menu">
               <button
                 type="button"
@@ -146,9 +178,7 @@ function App() {
         <section className="section-pad about-section" id="aboutus">
           <div className="container">
             <div className="section-heading">
-
               <h2>About Us</h2>
-
             </div>
 
             <div className="about-layout">
@@ -162,18 +192,15 @@ function App() {
                     className={activeTab === tab.id ? "about-tab active" : "about-tab"}
                     onClick={() => setActiveTab(tab.id)}
                   >
-                    <span>{tab.label}</span>
-                    <small>{tab.title}</small>
+                    {tab.label}
                   </button>
                 ))}
               </div>
               <article className="about-panel" role="tabpanel">
                 <img src={`/images/${activeAbout.image}`} alt={activeAbout.title} />
-                <div>
-                  <span className="eyebrow">Our purpose</span>
-                  <h3>{activeAbout.title}</h3>
-                  <p>{activeAbout.text}</p>
-                </div>
+                <h3>{activeAbout.title}</h3>
+                <p>{activeAbout.text}</p>
+                <span className="about-more" aria-hidden="true">›</span>
               </article>
             </div>
           </div>
@@ -186,8 +213,7 @@ function App() {
             </div>
             <div className="leader-copy">
               <span className="eyebrow">Director Desk</span>
-              <h2>“Excellence is a continuous process and not an accident.”</h2>
-              <p className="quote-credit">— Dr. A. P. J. Abdul Kalam</p>
+              <h2>“Excellence is a continuous process and not an accident.” – Dr. A. P. J. Abdul Kalam</h2>
               <p>I feel privileged to be the Director of such an excellent and vibrant school, which offers great openings for its students. It is our goal to make each and every student succeed.</p>
               <p>Aaryans World School was established with a passion of providing high quality education with an equal weight age provided for co- curricular activities. The well-crafted curriculum helps the children not only to compete with the global standards but also creates in them a sense of social responsible towards the Society and Nation.</p>
               <p>The Aaryans World School views education as the development of the whole child – attention or emphasis is placed not just on the intellectual development but also on the pupil’s physical, social and spiritual development. We offer our students the best possible opportunities to become confident, thoughtful young people who are prepared for any future responsibilities.</p>
@@ -218,18 +244,21 @@ function App() {
         <section className="section-pad features-section" id="ourFeatures">
           <div className="container">
             <div className="section-heading">
-
               <h2>Our Features</h2>
-
             </div>
             <div className="feature-grid">
-              {features.map((feature, index) => (
+              {features.map((feature) => (
                 <article className="feature-card" key={feature}>
+                  <svg className="feature-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+<polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+<line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
                   <div className="feature-icon" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                      <line x1="12" y1="22.08" x2="12" y2="12"/>
+<polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+<line x1="12" y1="22.08" x2="12" y2="12"/>
                     </svg>
                   </div>
                   <h3>{feature}</h3>
@@ -242,9 +271,7 @@ function App() {
         <section className="section-pad gallery-section" id="meetOurTeam">
           <div className="container">
             <div className="section-heading">
-
               <h2>Gallery</h2>
-
             </div>
             <div className="gallery-grid">
               {galleryImages.map((image, index) => (
@@ -254,7 +281,6 @@ function App() {
                   aria-label={`Gallery image ${index + 1}`}
                 >
                   <img src={`/images/${image}`} alt={`School gallery ${index + 1}`} />
-
                 </div>
               ))}
             </div>
@@ -263,6 +289,9 @@ function App() {
 
         <section className="section-pad contact-section" id="contact">
           <div className="container">
+            <div className="section-heading">
+              <h2>Contact Us</h2>
+            </div>
             <div className="contact-grid">
               <div className="contact-photo">
                 <img src="/images/contactus_1.jpg" alt="Students participating in a school activity" />
@@ -279,20 +308,28 @@ function App() {
 
       <footer className="site-footer">
         <div className="container footer-inner">
-<p>
-    © {new Date().getFullYear()}. Design with{" "}
-    <a
-        href="https://www.aayojanai.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: "none", fontWeight: "600" }}
-    >
-        Aayojan AI
-    </a>{" "}
-    ❤️ by aaryansworldschool.
-</p>          <a className="footer-top" href="#home" aria-label="Back to top">↑</a>
+          <p>
+            © {new Date().getFullYear()}. Design with{" "}
+            <a
+              href="https://www.aayojanai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", fontWeight: "600" }}
+            >
+              Aayojan AI
+            </a>
+            <span className="footer-heart">♥</span> by aaryansworldschool.
+          </p>
         </div>
       </footer>
+
+      <a
+        href="#home"
+        className={`scroll-top ${showTop ? "visible" : ""}`}
+        aria-label="Scroll to top"
+      >
+        ↑
+      </a>
 
       {lightboxImage && (
         <div className="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer" onClick={() => setLightboxImage(null)}>
