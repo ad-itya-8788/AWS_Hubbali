@@ -144,7 +144,8 @@ function App() {
                   <a
                     key={file}
                     href={`/pdf/${file}`}
-                    rel="noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={closeMenu}
                   >
                     {label}
