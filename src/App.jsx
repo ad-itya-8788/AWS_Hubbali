@@ -57,7 +57,7 @@ const features = [
   "Methodology Workshop",
 ];
 
-const galleryImages = ["gallery-archery.jpg", "gallery-cricket.jpg", "schoolphoto.jpg"];
+const galleryImages = ["gallery-archery.jpg", "gallery-cricket.jpg", "Schoolphoto1.jpg"];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -105,14 +105,13 @@ function App() {
                 aria-expanded={disclosureOpen}
                 onClick={() => setDisclosureOpen((open) => !open)}
               >
-                Mandatory Disclosure <span aria-hidden="true">⌄</span>
+                Mandatory Disclosure
               </button>
               <div className={`disclosure-list ${disclosureOpen ? "is-open" : ""}`}>
                 {disclosureFiles.map(([label, file]) => (
                   <a
                     key={file}
-                    href={`/pdfs/${file}`}
-                    target="_blank"
+                    href={`/pdf/${file}`}
                     rel="noreferrer"
                     onClick={closeMenu}
                   >
@@ -130,9 +129,12 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <span className="eyebrow">Learn • Grow • Shine</span>
-              <h1>Aaryans World School <span>Hubballi</span></h1>
+              <h1 className="hero-title">
+                <span className="hero-title-main">Aaryans World School</span>
+                <span className="hero-title-location">Hubbali</span>
+              </h1>
               <p>Inspiring young minds through learning, creativity and values.</p>
-              <a className="primary-button" href="#contact">Contact Us <span aria-hidden="true">→</span></a>
+              <a className="primary-button" href="#contact">Contact Us <span aria-hidden="true">›</span></a>
             </div>
             <div className="hero-art">
               <div className="hero-orbit" />
@@ -144,9 +146,9 @@ function App() {
         <section className="section-pad about-section" id="aboutus">
           <div className="container">
             <div className="section-heading">
-              <span className="eyebrow">Who we are</span>
+             
               <h2>About Us</h2>
-              <p>Building a strong foundation for every child's tomorrow.</p>
+              
             </div>
 
             <div className="about-layout">
@@ -187,9 +189,9 @@ function App() {
               <h2>“Excellence is a continuous process and not an accident.”</h2>
               <p className="quote-credit">— Dr. A. P. J. Abdul Kalam</p>
               <p>I feel privileged to be the Director of such an excellent and vibrant school, which offers great openings for its students. It is our goal to make each and every student succeed.</p>
-              <p>Aaryans World School was established with a passion for providing high-quality education with equal importance given to co-curricular activities. Our curriculum helps children meet global standards and develop a sense of social responsibility towards society and the nation.</p>
-              <p>We view education as the development of the whole child. Along with intellectual growth, we focus on physical, social and spiritual development so students can become confident, thoughtful young people prepared for future responsibilities.</p>
-              <p>Every student is unique, with their own skills, interests and aspirations. We believe education should support the natural, harmonious and progressive development of each child's abilities.</p>
+              <p>Aaryans World School was established with a passion of providing high quality education with an equal weight age provided for co- curricular activities. The well-crafted curriculum helps the children not only to compete with the global standards but also creates in them a sense of social responsible towards the Society and Nation.</p>
+              <p>The Aaryans World School views education as the development of the whole child – attention or emphasis is placed not just on the intellectual development but also on the pupil’s physical, social and spiritual development. We offer our students the best possible opportunities to become confident, thoughtful young people who are prepared for any future responsibilities.</p>
+              <p>I firmly believe that every student is a unique person with his/her own set of skills, wants and aspirations. Education is natural harmonious and progressive development of innate powers.</p>
             </div>
           </div>
         </section>
@@ -202,11 +204,13 @@ function App() {
             <div className="leader-copy">
               <span className="eyebrow">Director Panel</span>
               <h2>“Education is the kindling of a flame, not the filling of a vessel.”</h2>
-              <p>Keeping this quote in mind, Aaryans World School brings together competent teachers, child-centric infrastructure and experienced administration. We aim to create a safe and supportive environment with a balance of academics, sports, artistic and social opportunities.</p>
-              <p>Our school supports students' emotional growth along with intellectual excellence, helping them develop self-esteem, self-awareness and confidence. Sharing ideas, analysing situations and expressing themselves confidently are essential skills developed through experiential learning.</p>
-              <p>“Educating the mind without educating the heart is no education at all.” — Aristotle</p>
-              <p>We believe in giving students strong values and the confidence to become articulate, enlightened citizens ready to contribute to the global society with dignity, honour and integrity.</p>
-              <p>Alongside academics, we nurture dance, theatre, music and sports. We regularly improve our teaching methods and encourage a healthy teacher-student relationship, while promoting compassion, truth, honesty and sensitivity.</p>
+              <p>Keeping the above quote in mind, Aaryans World School was started with a perfect amalgamation of competent teachers, child centric infrastructure and an experienced and efficient administration. The school come into existence with a vision in creating a safe and supportive environment for its students – to provide a perfect balance of academics, sports, artistic and social opportunities. Childhood and learning should be a joy and we strive for that.</p>
+              <p>The schools genuine concern ensures student’s emotional growth along with intellectual excellence. This empowers them to develop their self-esteem, self-awareness and self confidence. Sharing ideas, analyzing situation and expressing them confidently are essential skills honed here through experiential learning.</p>
+              <p>“Educating the mind without educating the heart is no education at all “ARISTOTLE</p>
+              <p>We believe in giving our students strong values along with a set of wings which will help them to be groomed to become confident, articulate and enlightened young citizen, ready to step in the global society with dignity, honor and integrity.</p>
+              <p>Besides vigorous scholastic programmers, we seek to develop and nurture the different facts of a child from academic to dance, theatre, music and a variety of sports .Sports is an integral part of our curriculum and is given equal weightage along with academics. We develop the mental and physical abilities of a student.</p>
+              <p>Time and again we persistently upgrade and update our teaching tools and techniques. From interactive teaching methods to a healthy teacher – student relationship, we work round making studies as effortless as possible.</p>
+              <p>The school takes a special efforts in imbibing in its students the urge to be a sensitive citizen of India and for this it takes initiatives in different social causes, thus developing the skills like compassion, truth, honesty and sensitivity.</p>
             </div>
           </div>
         </section>
@@ -214,15 +218,20 @@ function App() {
         <section className="section-pad features-section" id="ourFeatures">
           <div className="container">
             <div className="section-heading">
-              <span className="eyebrow">Why choose us</span>
+              
               <h2>Our Features</h2>
-              <p>A supportive environment for learning and development.</p>
+              
             </div>
             <div className="feature-grid">
               {features.map((feature, index) => (
                 <article className="feature-card" key={feature}>
-                  <span className="feature-number">{String(index + 1).padStart(2, "0")}</span>
-                  <div className="feature-icon" aria-hidden="true">{["✦", "◎", "♡", "◇"][index % 4]}</div>
+                  <div className="feature-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                      <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                  </div>
                   <h3>{feature}</h3>
                 </article>
               ))}
@@ -233,22 +242,20 @@ function App() {
         <section className="section-pad gallery-section" id="meetOurTeam">
           <div className="container">
             <div className="section-heading">
-              <span className="eyebrow">Life at school</span>
+             
               <h2>Gallery</h2>
-              <p>Moments and memories from our school community.</p>
+              
             </div>
             <div className="gallery-grid">
               {galleryImages.map((image, index) => (
-                <button
+                <div
                   className="gallery-item"
                   key={image}
-                  type="button"
-                  onClick={() => setLightboxImage(image)}
-                  aria-label={`View gallery image ${index + 1}`}
+                  aria-label={`Gallery image ${index + 1}`}
                 >
                   <img src={`/images/${image}`} alt={`School gallery ${index + 1}`} />
-                  <span className="gallery-overlay">View image ↗</span>
-                </button>
+                 
+                </div>
               ))}
             </div>
           </div>
@@ -256,34 +263,23 @@ function App() {
 
         <section className="section-pad contact-section" id="contact">
           <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">Get in touch</span>
-              <h2>Contact Us</h2>
-              <p>We would be happy to hear from you.</p>
-            </div>
             <div className="contact-grid">
               <div className="contact-photo">
                 <img src="/images/contactus_1.jpg" alt="Students participating in a school activity" />
               </div>
               <div className="contact-card">
-                <span className="contact-symbol" aria-hidden="true">⌖</span>
                 <h3>Aaryans World School</h3>
-                <p className="contact-label">Address</p>
-                <p>#117/3, Sulla Road, Post: Gopankoppa, Hubballi-580023, Karnataka</p>
-                <div className="contact-divider" />
-                <p className="contact-label">Phone</p>
-                <a className="phone-link" href="tel:7204274488">7204274488</a>
-                <a className="primary-button contact-button" href="tel:7204274488">Call the school <span aria-hidden="true">→</span></a>
+                <p>Address: #117/3, Sulla RoadPost: Gopankoppa, Hubballi-580023, Karnataka</p>
+                <p className="contact-mob">Mob. 7204274488</p>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-    <footer className="site-footer">
+      <footer className="site-footer">
         <div className="container footer-inner">
-
-          <p>© {new Date().getFullYear()} Design with Nikhil Kholam ❤️ by aaryansworldschool.</p>
+          <p>© {new Date().getFullYear()}. Design with Nikhil Kholam ❤️ by aaryansworldschool.</p>
           <a className="footer-top" href="#home" aria-label="Back to top">↑</a>
         </div>
       </footer>
