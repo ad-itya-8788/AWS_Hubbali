@@ -146,9 +146,9 @@ function App() {
         <section className="section-pad about-section" id="aboutus">
           <div className="container">
             <div className="section-heading">
-             
+
               <h2>About Us</h2>
-              
+
             </div>
 
             <div className="about-layout">
@@ -218,9 +218,9 @@ function App() {
         <section className="section-pad features-section" id="ourFeatures">
           <div className="container">
             <div className="section-heading">
-              
+
               <h2>Our Features</h2>
-              
+
             </div>
             <div className="feature-grid">
               {features.map((feature, index) => (
@@ -242,9 +242,9 @@ function App() {
         <section className="section-pad gallery-section" id="meetOurTeam">
           <div className="container">
             <div className="section-heading">
-             
+
               <h2>Gallery</h2>
-              
+
             </div>
             <div className="gallery-grid">
               {galleryImages.map((image, index) => (
@@ -254,7 +254,7 @@ function App() {
                   aria-label={`Gallery image ${index + 1}`}
                 >
                   <img src={`/images/${image}`} alt={`School gallery ${index + 1}`} />
-                 
+
                 </div>
               ))}
             </div>
@@ -279,8 +279,18 @@ function App() {
 
       <footer className="site-footer">
         <div className="container footer-inner">
-          <p>© {new Date().getFullYear()}. Design with Nikhil Kholam ❤️ by aaryansworldschool.</p>
-          <a className="footer-top" href="#home" aria-label="Back to top">↑</a>
+<p>
+    © {new Date().getFullYear()}. Design with{" "}
+    <a
+        href="https://www.aayojanai.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", fontWeight: "600" }}
+    >
+        Aayojan AI
+    </a>{" "}
+    ❤️ by aaryansworldschool.
+</p>          <a className="footer-top" href="#home" aria-label="Back to top">↑</a>
         </div>
       </footer>
 
